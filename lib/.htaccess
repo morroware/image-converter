@@ -1,0 +1,8 @@
+# Deny all direct HTTP access to the PHP library — these files are only meant
+# to be included by the application entry points.
+Require all denied
+
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>

@@ -1,0 +1,8 @@
+config.php
+optimized/.ratelimit.json
+optimized/.tmp_*
+optimized/.pdf_*
+.installed
+*.log
+.DS_Store
+Thumbs.db
