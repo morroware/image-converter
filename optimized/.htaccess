@@ -1,0 +1,18 @@
+# Disable directory listing; allow direct reads of output files only.
+Options -Indexes
+
+# Block hidden bookkeeping files (.ratelimit.json, .pdf_XXXX.pdf, .tmp_XXXX).
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+<IfModule !mod_authz_core.c>
+    <FilesMatch "^\.">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
+
+# Never execute PHP (or anything script-y) from inside the uploads dir.
+<FilesMatch "\.(php|phtml|phar|pl|cgi|sh|exe|bat)$">
+    Require all denied
+</FilesMatch>

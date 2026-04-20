@@ -1,0 +1,203 @@
+/* =========================================================================
+   gallery.css
+   ========================================================================= */
+
+.gallery-toolbar {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+@media (max-width: 700px) {
+    .gallery-toolbar { grid-template-columns: 1fr 1fr; }
+}
+
+.gallery-stats {
+    display: flex;
+    gap: 18px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+.gallery-stats strong { color: var(--castle-gold-hi); font-family: var(--font-mono); }
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+}
+
+.gallery-card {
+    background: var(--castle-stone-900);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition);
+    position: relative;
+}
+.gallery-card:hover {
+    border-color: var(--castle-purple-hi);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+.gallery-card.selected {
+    border-color: var(--castle-gold-hi);
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.35);
+}
+
+.gallery-card .thumb-wrap {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: var(--castle-stone-800);
+    overflow: hidden;
+    cursor: pointer;
+}
+.gallery-card .thumb-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.gallery-card .thumb-wrap .select-box {
+    position: absolute; top: 8px; left: 8px;
+    width: 22px; height: 22px;
+    background: rgba(15, 10, 30, 0.85);
+    border: 2px solid var(--castle-gold-hi);
+    border-radius: 4px;
+    cursor: pointer;
+    display: grid; place-items: center;
+    color: var(--castle-gold-hi);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+.gallery-card.selected .thumb-wrap .select-box {
+    background: var(--castle-gold-hi);
+    color: var(--castle-void);
+}
+.gallery-card .ext-tag {
+    position: absolute; top: 8px; right: 8px;
+    padding: 3px 8px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    background: rgba(15, 10, 30, 0.85);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--castle-gold-hi);
+}
+
+.gallery-card .meta {
+    padding: 12px 14px;
+}
+.gallery-card .name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    margin-bottom: 4px;
+}
+.gallery-card .info {
+    display: flex; gap: 10px;
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    margin-bottom: 10px;
+}
+.gallery-card .actions {
+    display: flex; gap: 6px;
+}
+
+.gallery-empty {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-muted);
+}
+.gallery-empty h3 {
+    color: var(--castle-gold-hi);
+    margin-bottom: 8px;
+}
+
+/* ---------- Bulk action bar -------------------------------------------- */
+.bulk-bar {
+    position: sticky;
+    bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    margin-top: 24px;
+    background: linear-gradient(135deg, rgba(109, 40, 217, 0.85), rgba(76, 29, 149, 0.85));
+    border: 1px solid rgba(245, 158, 11, 0.5);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(12px);
+    color: #fff;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(120%);
+    transition: transform var(--transition);
+}
+.bulk-bar.active { transform: translateY(0); }
+
+/* ---------- Lightbox --------------------------------------------------- */
+.lightbox {
+    position: fixed; inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: grid; place-items: center;
+    z-index: 9000;
+    padding: 30px;
+}
+.lightbox img {
+    max-width: 95vw; max-height: 85vh;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+}
+.lightbox .close {
+    position: absolute; top: 20px; right: 20px;
+    width: 40px; height: 40px;
+    display: grid; place-items: center;
+    background: rgba(15, 10, 30, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+.lightbox .nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px;
+    display: grid; place-items: center;
+    background: rgba(15, 10, 30, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+.lightbox .nav.prev { left: 20px; }
+.lightbox .nav.next { right: 20px; }
+
+/* ---------- Confirm modal --------------------------------------------- */
+.modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: grid; place-items: center;
+    z-index: 9500;
+}
+.modal {
+    background: var(--castle-stone-900);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    max-width: 400px;
+    width: calc(100% - 40px);
+    box-shadow: var(--shadow-lg);
+}
+.modal h3 {
+    color: var(--castle-gold-hi);
+    margin-bottom: 10px;
+}
+.modal .buttons {
+    display: flex; gap: 8px; justify-content: flex-end;
+    margin-top: 20px;
+}
