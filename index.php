@@ -63,7 +63,7 @@ $h = fn($s) => htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
                 <p>JPG · PNG · WebP · AVIF · GIF · BMP<?php
                     if ($formats->hasImagick()) echo ' · TIFF · HEIC · SVG · PSD'; ?></p>
                 <div class="alt-actions">
-                    <button class="btn btn-gold" type="button">Choose files</button>
+                    <button class="btn btn-gold" id="pick-files-btn" type="button">Choose files</button>
                     <span class="muted" style="font-size:0.82rem">or paste with Ctrl+V</span>
                 </div>
                 <input type="file" id="filepicker" multiple accept="image/*,.heic,.heif,.tif,.tiff,.psd,.svg" class="sr-only">
@@ -257,7 +257,7 @@ $h = fn($s) => htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
                     <h2>Drop images to combine</h2>
                     <p>They'll become pages in the order listed below. Drag to reorder.</p>
                     <div class="alt-actions">
-                        <button class="btn btn-gold" type="button">Choose images</button>
+                        <button class="btn btn-gold" id="pdf-pick-images-btn" type="button">Choose images</button>
                     </div>
                     <input type="file" id="pdf-images-picker" multiple accept="image/*" class="sr-only">
                 </div>

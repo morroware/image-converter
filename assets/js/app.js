@@ -44,12 +44,20 @@
 
     const dropzone = $('#dropzone');
     const filePicker = $('#filepicker');
+    const pickFilesBtn = $('#pick-files-btn');
     const queueEl = $('#queue');
     const convertBtn = $('#convert-btn');
     const clearBtn = $('#clear-btn');
     const resultsBlock = $('#results');
     const urlImportInput = $('#url-import');
     const urlImportBtn = $('#url-import-btn');
+
+    if (pickFilesBtn && filePicker) {
+        pickFilesBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            filePicker.click();
+        });
+    }
 
     if (dropzone) {
         dropzone.addEventListener('click', e => {
@@ -347,7 +355,15 @@
 
     const pdfDrop = $('#pdf-images-drop');
     const pdfPicker = $('#pdf-images-picker');
+    const pdfPickBtn = $('#pdf-pick-images-btn');
     const pdfList = $('#pdf-image-list');
+
+    if (pdfPickBtn && pdfPicker) {
+        pdfPickBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            pdfPicker.click();
+        });
+    }
 
     if (pdfDrop) {
         pdfDrop.addEventListener('click', e => {
